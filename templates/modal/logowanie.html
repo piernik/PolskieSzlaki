@@ -1,0 +1,21 @@
+<div class="modal padding" ng-controller="logowanieCtrl">
+  <ion-header-bar class="bar bar-header bar-positive">
+	<h1 class="title">Zaloguj się</h1>
+	<button class="button button-clear icon ion-chevron-down" ng-click="zamknijLogowanie()"></button>
+  </ion-header-bar>
+  <ion-content>
+	<div class="list list-inset">
+	  <form ng-submit="zalogujSie()">
+		<label class="item item-input">
+		  <input type="text" placeholder="Email" name="email" ng-model="formLogowanie.email">
+		</label>
+		<label class="item item-input">
+		  <input type="password" placeholder="Hasło" name="haslo" ng-model="formLogowanie.haslo">
+		</label>
+		<label class="padding">
+		  <input type="submit" class="button button-block button-positive" value="Zaloguj się">
+		</label>
+	  </form>
+	</div>
+  </ion-content>
+</div>

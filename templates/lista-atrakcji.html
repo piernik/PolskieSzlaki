@@ -1,0 +1,63 @@
+<ion-view title="Lista atrakcji">
+  <ion-nav-buttons side="right">
+	<button class="button button-icon ion-android-search" ng-click="modalWyszukiwarka.show()"></button>
+	<button class="button button-icon ion-map" ng-click="pokazMape();"></button>
+	<button class="button button-icon ion-android-more" ng-click=""></button>
+  </ion-nav-buttons>
+  <ion-content>
+	<div ng-show="mapa" class="mapa_google caly_ekran"><div id="lista_google_map"></div></div>
+	<form ng-show="!mapa" ng-submit="pobierzListeAtrakcji()">
+	  <input type="hidden" name="strona" ng-model="filtry.strona">
+	  <input type="hidden" name="x" ng-model="filtry.x">
+	  <input type="hidden" name="y" ng-model="filtry.y">
+	  <div class="row">
+		<div class="col">
+		  <label class="item">
+			<select name="rodzaj" style="display:block; width:100%" ng-model="filtry.rodzaj" ng-change="zmianaFiltrow();" ng-options="r.id as r.nazwa for r in rodzaje"></select>
+		  </label>
+		</div>
+		<div class="col">
+		  <label class="item">
+			<select name="sortuj" style="display:block; width:100%" ng-model="filtry.sortuj" ng-change="zmianaFiltruSortuj();
+				zmianaFiltrow();" ng-options="r.id as r.nazwa for r in sortowanie"></select>
+		  </label>
+		</div>
+	  </div>
+	  <div class="list">
+		<div class="item range range-positive">
+		  5 km
+		  <input type="range" name="w_promieniu" ng-model="filtry.w_promieniu" min="5" max="700">
+		  700 km
+		</div>
+	  </div>
+	</form>
+	<ion-list id="lista_atrakcji" class="list lista-zdjecia" ng-show="!mapa" >
+	  <div ng-repeat="atrakcja in atrakcje">
+		<a class="item item-thumbnail-left" href="#/ps/atrakcja/{{atrakcja.id}}">
+		  <img ng-src="{{atrakcja.zdjecia.lista}}">
+		  <h2>{{atrakcja.tytul}}</h2>
+		  <span ng-show="atrakcja.odleglosc" class="item-note">
+			<div><i class="icon  ion-android-locate"></i> {{atrakcja.odleglosc}} km <i style="-webkit-transform:rotate({{atrakcja.stopnie}}deg);" class="icon ion-arrow-up-a"></i></div>
+			<div ng-show="marker"><i class="icon  ion-location"></i> {{atrakcja.odlegloscMarker}} km <i style="-webkit-transform:rotate({{atrakcja.stopnieMarker}}deg);" class="icon ion-arrow-up-a"></i></div>
+		  </span>
+		  <p>
+		  <rating value="atrakcja.ocena" readonly="true"></rating>
+		  <br>
+		  <i ng-show="atrakcja.chceWidziec" class="onaczenie icon ion-eye"></i>
+		  <i ng-show="atrakcja.ocenaUzytkownika" class="onaczenie icon ion-thumbsup"></i>
+		  </p>
+		</a>
+	  </div>
+	</ion-list>
+	<!--<ion-infinite-scroll ng-if="!koniecAtrakcji"  on-infinite="pobierzAtrakcje()"></ion-infinite-scroll>-->
+	<div class="row" ng-class="{'nawigacja_bez_poprzedni': filtry.strona == 0, 'nawigacja_z_mapa': mapa}">
+	  <div class="col pop">
+		<button class="button button-block icon-left ion-chevron-left" ng-click="zmienStrone(-1)">Poprzednie</button>
+	  </div>
+	  <div class="col col-67 nast">
+		<button class="button button-block button-positive icon-right ion-chevron-right" ng-click="zmienStrone(1)">Następne</button>
+	  </div>
+	</div>
+
+  </ion-content>
+</ion-view>

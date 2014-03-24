@@ -1,0 +1,52 @@
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-pane ion-side-menu-content drag-content="false">
+	<ion-nav-bar class="nav-title-slide-ios7 bar-stable">
+	  <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+	  </ion-nav-back-button>
+	</ion-nav-bar>
+
+	<ion-nav-buttons side="left">
+	  <button class="button button-icon ion-navicon-round" ng-click="$ionicSideMenusController.toggleLeft()"></button>
+    </ion-nav-buttons>
+	<ion-nav-view name="mainView" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+  <ion-side-menu side="left">
+	<ion-header-bar class="bar bar-header bar-positive">
+	  <h1 class="title">Menu</h1>
+	</ion-header-bar>
+	<ion-content scroll="false">
+	  <input type="hidden" ng-model="zalogowany">
+	  <div class="list">
+		<a class="item item-icon-left" nav-clear menu-close href="#/ps/index">
+		  <i class="icon ion-home"></i>
+		  Strona główna
+		</a>
+		<a ng-if="!zalogowany" class="item item-icon-left" menu-close ng-click="modalLogowanie.show();">
+		  <i class="icon ion-log-in"></i>
+		  Zaloguj się
+		</a>
+		<a ng-if="zalogowany" class="item item-icon-left" menu-close ng-click="wylogujSie()">
+		  <i class="icon ion-log-out"></i>
+		  Wyloguj się
+		</a>
+
+		<!--		<a class="item item-icon-left" href="#">
+				  <i class="icon ion-gear-b"></i>
+				  Ustawienia
+				</a>-->
+
+		<a class="item item-icon-left" href="#" onclick="ionic.Platform.exitApp();">
+		  <i class="icon ion-close-round"></i>
+		  Zamknij
+		</a>
+
+	  </div>
+	  <div class="stopka">
+		<a menu-close href="http://www.polskieszlaki.pl"><img src="img/logo.png"></a>
+		<br>
+		2005-2014
+	  </div>
+	</ion-content>
+  </ion-side-menu>
+</ion-side-menus>

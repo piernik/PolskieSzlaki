@@ -1,0 +1,31 @@
+<div class="modal padding" ng-controller="wyszukiwarkaCtrl">
+  <ion-header-bar class="bar bar-header bar-positive">
+	<h1 class="title">Wyszukiwarka</h1>
+	<button class="button button-clear icon ion-chevron-down" ng-click="zamknijWyszukiwarke()"></button>
+  </ion-header-bar>
+  <ion-content>
+	<div class="list list-inset">
+	  <label class="item item-input">
+		<i class="icon ion-search placeholder-icon"></i>
+		<input type="text" placeholder="Wpisz nazwę atrakcji" name="fraza" id="fraza" ng-model="formSzukaj.fraza" ng-change="wyszukaj();">
+		<i class="icon ion-loading-c" ng-class="{niewidoczny: formSzukaj.szukam != 1}"></i>
+	  </label>
+	</div>
+	<ion-list id="lista_atrakcji" class="list">
+	  <div ng-repeat="atrakcja in atrakcje">
+		<a class="item item-thumbnail-left" href="#/ps/atrakcja/{{atrakcja.id}}" ng-click="modalWyszukiwarka.hide()">
+		  <img ng-src="{{atrakcja.zdjecie}}">
+		  <h2>{{atrakcja.tytul}}</h2>
+		  <span ng-show="atrakcja.odleglosc" class="item-note"><i class="icon  ion-android-locate"></i> {{atrakcja.odleglosc}} km  <i style="-webkit-transform:rotate({{atrakcja.stopnie}}deg);" class="icon ion-arrow-up-a"></i></span>
+		  <p>
+		  <rating value="atrakcja.ocena" readonly="true"></rating>
+		  <br>
+		  <i ng-show="atrakcja.chceWidziec" class="onaczenie icon ion-eye"></i>
+		  <i ng-show="atrakcja.ocenaUzytkownika" class="onaczenie icon ion-thumbsup"></i>
+		  </p>
+		</a>
+	  </div>
+	</ion-list>
+
+  </ion-content>
+</div>

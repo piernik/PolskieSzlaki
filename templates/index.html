@@ -1,0 +1,47 @@
+<ion-view title="<img src='img/logo.png'>">
+  <ion-nav-buttons side="right">
+	<button class="button button-icon ion-android-search" ng-click="modalWyszukiwarka.show()"></button>
+  </ion-nav-buttons>
+  <ion-content has-header="true" padding="false" scroll="true">
+	<div class="index-form padding row responsive-md">
+	  <div class="col col-45">
+		<a ng-click="pokazAtrakcjeBliskoCiebie()" class="button button-block icon-right ion-android-locate button-positive">Atrakcje blisko Ciebie</a>
+	  </div>
+	  <div class="col col-10" style="text-align:center">lub</div>
+	  <div class="col col-45">
+		<label class="item item-input">
+		  <input type="text" placeholder="Atrakcje w pobliżu miasta" name="miasto" ng-model="formMapa.miasto" ng-enter="wyszukajNaMapie()">
+		</label>
+	  </div>
+	</div>
+	<div class="card">
+	  <div class="item item-divider">Polecamy</div>
+	  <ion-slide-box controller-bind="polecamyCtrl" does-continue="true">
+		<ion-slide ng-repeat="atrakcja in polecamy">
+		  <div class="box glowne_zdjecie">
+			<a href="#/ps/atrakcja/{{atrakcja.id}}">
+			  <img ng-src="{{atrakcja.zdjecie}}">
+			  <div class='tytul'>
+				<h2>{{atrakcja.tytul}}</h2>
+				<div>{{atrakcja.tytul_krainy}}</div>
+				<rating value="atrakcja.ocena" readonly="true"></rating>
+			  </div>
+			  <div class="gorny_prawy_rog" ng-show="atrakcja.odleglosc"><i class="icon  ion-android-locate"></i> {{atrakcja.odleglosc}} km  <i style="-webkit-transform:rotate({{atrakcja.stopnie}}deg);" class="icon ion-arrow-up-a"></i></div>
+			</a>
+		  </div>
+		</ion-slide>
+	  </ion-slide-box>
+	</div>
+
+	<div class="card">
+	  <div class="item item-divider">Ostatnio przeglądane</div>
+	  <ion-list class="list">
+		<div ng-repeat="atrakcja in ostatnioPrzegladane">
+		  <a class="item" href="#/ps/atrakcja/{{atrakcja.id}}">
+			<h2>{{atrakcja.tytul}}</h2>
+		  </a>
+		</div>
+	  </ion-list>
+	</div>
+  </ion-content>
+</ion-view>

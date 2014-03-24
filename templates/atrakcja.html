@@ -1,0 +1,56 @@
+<ion-view title="{{atrakcja.tytul}}">
+  <ion-nav-buttons side="right">
+	<button class="button button-icon ion-android-search" ng-click="modalWyszukiwarka.show()"></button>
+  </ion-nav-buttons>
+  <ion-content has-header="true">
+	<div class="zdjecie zdjecie_cover glowne_zdjecie" back-img="{{atrakcja.zdjecie}}">
+	  <!--<img ng-src="{{atrakcja.zdjecie}}">-->
+	  <div class='tytul'>
+		<h2>{{atrakcja.tytul}}</h2>
+		<div>{{atrakcja.tytul_krainy}}</div>
+		<rating value="atrakcja.ocena" readonly="true"></rating>
+	  </div>
+	  <div class="gorny_prawy_rog" ng-show="atrakcja.odleglosc"><i class="icon  ion-android-locate"></i> {{atrakcja.odleglosc}} km  <i style="-webkit-transform:rotate({{atrakcja.stopnie}}deg);" class="icon ion-arrow-up-a"></i>
+		<br>
+		<i ng-show="atrakcja.chceWidziec" class="onaczenie icon ion-eye"></i>
+		<i ng-show="atrakcja.ocenaUzytkownika" class="onaczenie icon ion-thumbsup"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col">
+		<button ng-class="{'button-dark ion-android-checkmark':atrakcja.chceWidziec}" class="button button-block icon-left" ng-click="chceWidziec();">Chcę odwiedzić</button>
+	  </div>
+	  <div class="col">
+		<button ng-class="{'ion-android-checkmark':atrakcja.ocenaUzytkownika}" class="button button-block button-positive icon-left" ng-click="widzialem();">Widziałem{{atrakcja.ocenaUzytkownika|ocenaSlownie:this}}</button>
+	  </div>
+	</div>
+
+	<div class="card">
+	  <div class="item item-divider">
+		Opis atrakcji
+	  </div>
+	  <div class="dwie-kolumny item item-text-wrap" ng-bind-html="atrakcja.tresc | stripATags"></div>
+
+	  <a ng-click="atrakcjeWPoblizu()" class="item button button-block assertive icon-right ion-location button-positive">Zobacz atrakcje w okolicy</a>
+	</div>
+	<div class="card">
+	  <div class="item item-divider">
+		Mapa
+	  </div>
+	  <div class="item item-image">
+		<div class="zdjecie atr_google_maps">
+		  <a href="geo:{{atrakcja.x}},{{atrakcja.y}}?z=15&q={{atrakcja.x}},{{atrakcja.y}}({{atrakcja.tytul}})">
+			<img ng-src="http://maps.googleapis.com/maps/api/staticmap?center={{atrakcja.x}},{{atrakcja.y}}&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7C{{atrakcja.x}},{{atrakcja.y}}&sensor=false">
+		  </a>
+		</div>
+	  </div>
+	</div>
+  </ion-content>
+</ion-view>
+
+<script id="ocena-uzytkownika.html" type="text/ng-template">
+  <label class="item item-radio" ng-repeat="item in oceny">
+  <input type="radio" name="ocena" ng-model="atrakcja.ocenaUzytkownika" ng-value="item.id">
+  <div class="item-content">{{ item.title }}</div>
+  <i class="radio-icon ion-checkmark"></i>
+  </label>
+</script>
