@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="pl.polskieszlaki.PolskieSzlaki" version="0.9.0">
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "pl.polskieszlaki.polskieszlaki"
+        versionCode="1" 
+        version   = "0.8.0">
   <name>Polskie Szlaki</name>
   <description>www.polskieszlaki.pl</description>
   <author email="biuro@polskieszlaki.pl" href="http://www.polskieszlaki.pl">Łukasz Piernikarczyk</author>
