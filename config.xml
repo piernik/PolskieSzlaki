@@ -10,4 +10,5 @@
   <preference name="DisallowOverscroll" value="true" />
   <preference name="SplashScreen" value="splash"/>
   <preference name="SplashScreenDelay" value="10000"/>
+      <gap:platform name="android" />
 </widget>
