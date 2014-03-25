@@ -189,6 +189,7 @@ AppCtrl.controller('atrakcjeCtrl', function($scope, App, MapaLista, Uzytkownik, 
   };
   $scope.pobierzAtrakcje = function() {
 	$scope.scrollToAnchor("lista_atrakcji");
+	//$scope.$ionicScrollController.scrollTop(true);
 	$scope.koniecAtrakcji = false;
 	$scope.loading = $ionicLoading.show({
 	  content: '<i class=" ion-loading-c"></i><br>Pobieram atrakcje...',
@@ -417,7 +418,6 @@ AppCtrl.controller('wyszukiwarkaCtrl', function($scope, App, $http, Uzytkownik) 
   $scope.zamknijWyszukiwarke = function() {
 	var iF = document.getElementById("fraza");
 	iF.blur();
-	console.log("Zamknij wyszukiwarkę");
 	$scope.modalWyszukiwarka.hide();
   };
 });
@@ -469,7 +469,6 @@ AppCtrl.controller('polskieszlakiCtrl', function($scope, App, Uzytkownik, $ionic
   $scope.ustawienia = {
 	pokazujMapeListyAtrakcji: false
   };
-console.log("From and2");
   $scope.ostatnioPrzegladane = App.getOstatnioPrzegladane();
   $scope.scrollToAnchor = function(anchor) {
 	$location.hash(anchor);

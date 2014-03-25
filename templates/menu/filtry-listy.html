@@ -1,0 +1,22 @@
+<ion-header-bar class="bar bar-header bar-positive">
+  <h1 class="title">Opcje</h1>
+</ion-header-bar>
+<ion-content scroll="false">
+  <form ng-show="!mapa" ng-submit="pobierzListeAtrakcji()">
+	<input type="hidden" name="strona" ng-model="filtry.strona">
+	<input type="hidden" name="x" ng-model="filtry.x">
+	<input type="hidden" name="y" ng-model="filtry.y">
+	<label class="item">
+	  <select name="rodzaj" style="display:block; width:100%" ng-model="filtry.rodzaj" ng-change="zmianaFiltrow();" ng-options="r.id as r.nazwa for r in rodzaje"></select>
+	</label>
+	<label class="item">
+	  <select name="sortuj" style="display:block; width:100%" ng-model="filtry.sortuj" ng-change="zmianaFiltruSortuj();
+		  zmianaFiltrow();" ng-options="r.id as r.nazwa for r in sortowanie"></select>
+	</label>
+	<div class="item range range-positive">
+	  5 km
+	  <input type="range" name="w_promieniu" ng-model="filtry.w_promieniu" min="5" max="700">
+	  700 km
+	</div>
+  </form>
+</ion-content>

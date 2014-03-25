@@ -137,6 +137,10 @@ angular.module('polskieszlaki', ['ionic', 'polskieszlaki.services', 'polskieszla
 					  "mainView": {
 						templateUrl: 'templates/lista-atrakcji.html',
 						controller: 'atrakcjeCtrl'
+					  },
+					  "praweMenu": {
+						templateUrl: 'templates/menu/filtry-listy.html',
+						controller: 'atrakcjeCtrl'
 					  }
 					}
 				  })
@@ -164,4 +168,11 @@ angular.module('polskieszlaki', ['ionic', 'polskieszlaki.services', 'polskieszla
 		  // if none of the above states are matched, use this as the fallback
 		  $urlRouterProvider.otherwise('/ps/index');
 		  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|geo|mailto|file):/);
+		})
+
+		.run(function($ionicPlatform) {
+		  $ionicPlatform.ready(function() {
+			console.log("gh");
+			alert("K");
+		  });
 		});
